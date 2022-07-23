@@ -15,7 +15,12 @@ export default class UsersController {
             if (foundUser.rows[0].password == password) {
                 const token = jwt.sign({ username, password }, Env.get('SECRET'))
                 ctx.response.status(200);
-                return token
+                return {token}
+            } else {
+                ctx.response.status(403);
+                return {
+                    message: "wrong username/password"
+                }
             }
         }
         return foundUser;
