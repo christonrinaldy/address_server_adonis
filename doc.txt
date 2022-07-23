@@ -1,0 +1,67 @@
+1. Login User
+    url: /login
+    method: POST
+    body: {
+        username: string,
+        password: string
+    }
+
+    response: 
+        -SUCCESS
+            status: 200
+            {
+                token: string
+            }
+        -ERROR
+        *   status: 404
+            "NOT FOUND"
+        *   status: 403
+            {
+                message: "wrong username/password"
+            }
+
+2. Location
+2.1 get location by id
+    url: /location
+    method: GET
+    body: {
+        id: string
+    }
+    header: {
+        token: string
+    }
+
+    response: 
+        -ERROR:
+        if token is undefined or token verification is false
+        *   status: 401
+            'NOT AUTHORIZED'
+        if no [id] was found in request.body
+        *   status: 400
+            'Bad Request!'
+        -SUCCESS
+        *   status: 200
+            Object
+2.2 get location by request: kota_id|provinsi_id|kecamatan_id
+    url: /locations
+    method: GET
+    body: {
+        id: string
+    }
+    header: {
+        token: string
+    }
+
+    response: 
+        -ERROR:
+        if token is undefined or token verification is false
+        *   status: 401
+            'NOT AUTHORIZED'
+        if no [id] was found in request.body
+        *   status: 400
+            'Bad Request!'
+        -SUCCESS
+        *   status: 200
+            [Object]
+
+        
