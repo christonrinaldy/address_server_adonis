@@ -24,3 +24,16 @@
 3. This project is using Redis to save the addresses values
    please fill the value for REDIS congiguration on .env file
 4. on terminal on project's folder and execute npm start
+5. to get token for authentication for requesting to api, 
+   1. On API Platform
+      request to 
+      url: http://localhost:[YOUR_PORT]/login
+      method: POST
+      body: {
+         "username": "admin",
+         "password": "password"
+      }
+      response: {
+         token: string
+      }
+
